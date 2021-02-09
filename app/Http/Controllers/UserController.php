@@ -40,22 +40,28 @@ class UserController extends Controller
             return $this->responseError("Maaf Username yang dimasukkan belum terdaftar", null);
         }
         if(Hash::check($request->password, $user->password)){
-            $apitoken = md5($user->username) . $this->getToken(36);
-            $user->token_mobile = $apitoken;
+            $apitoken = md5($user->username) . $this->getToken(128);
+            $user->api_token = $apitoken;
             $user->save();
             return $this->responseOK("Login sukses", $user, 201);
         }
     }
+
     public static function getToken($length) {
         $token = "";
         $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
         $codeAlphabet.= "0123456789";
-        $codeAlphabet.= "GRADIEN_CO";
+        //$codeAlphabet.= "~!@#$%^&*()_+<>?:;[]{},./";
         $max = strlen($codeAlphabet); // edited
         for ($i=0; $i < $length; $i++) {
             $token .= $codeAlphabet[random_int(0, $max-1)];
         }
         return $token;
+    }
+
+    public function loginVerify() {
+        $user = Auth::user();
+        return $this->responseOK("User logged in", $user, 200);
     }
 }
