@@ -20,6 +20,7 @@ class UserController extends Controller
             'username' => $request->username,
             'password' => Hash::make($request->password),
         ];
+        //TODO: Check user people or institution then insert new profil or institution
         if (User::create($user)) {
             return $this->responseOK("Registrasi sukses", $user);
         } else {
