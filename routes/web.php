@@ -34,6 +34,10 @@ $router->post('/user',                  ['uses' => 'UserController@insertUser', 
 $router->put('/user',                   ['uses' => 'UserController@updateUser', 'middleware' => 'auth']);
 $router->delete('/user/{id}',                ['uses' => 'UserController@deleteUser', 'middleware' => 'auth']);
 
+// -----------------------------------------
+// SYSTEM and CONFIG
+// -----------------------------------------
+$router->get('/master',                  ['uses' => 'ConfigController@getMaster', 'middleware' => 'auth']);
 
 // -----------------------------------------
 // PERSONAL PROFILE
