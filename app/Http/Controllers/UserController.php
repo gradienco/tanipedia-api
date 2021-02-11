@@ -38,13 +38,15 @@ class UserController extends Controller
         }
         $user = User::where('username', $request->username)->first();
         if($user == null) {
-            return $this->responseError("Maaf Username yang dimasukkan belum terdaftar", null);
+            return $this->responseError("Maaf Username atau password salah", null);
         }
         if(Hash::check($request->password, $user->password)){
             $apitoken = md5($user->username) . $this->getToken(128);
             $user->api_token = $apitoken;
             $user->save();
             return $this->responseOK("Login sukses", $user, 201);
+        } else {
+            return $this->responseError("Maaf Username atau password salah", null);
         }
     }
 

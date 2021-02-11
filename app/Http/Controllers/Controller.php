@@ -15,7 +15,7 @@ class Controller extends BaseController
         return response()->json($attribue, $responseCode);
     }
 
-    public function responseError($message = null, $data, $responseCode = 400) {
+    public function responseError($message = null, $data = null, $responseCode = 400) {
         $attribue = [
             "status"    => "ERROR",
             "message"   => $message,
