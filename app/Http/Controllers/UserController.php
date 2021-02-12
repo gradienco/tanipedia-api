@@ -12,16 +12,20 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function register(Request $request) {
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'username' => 'required|unique:users|max:255',
             'password' => 'required|min:6'
         ]);
+        if ($validator->fails()){
+            return $this->responseError("Invalid Request", $validator->errors());
+        }
         $user = [
             'username' => $request->username,
             'password' => Hash::make($request->password),
         ];
         //TODO: Check user people or institution then insert new profil or institution
-        if (User::create($user)) {
+        $user = User::create($user);
+        if ($user) {
             return $this->responseOK("Registrasi sukses", $user);
         } else {
             return $this->responseError("Registrasi gagal", 400);

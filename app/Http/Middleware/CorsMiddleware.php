@@ -4,6 +4,11 @@ namespace App\Http\Middleware;
 
 class CorsMiddleware {
     public function handle($request, \Closure $next) {
+        if ($request->isMethod('OPTIONS')) {
+            return response()->json('{"method":"OPTIONS"}', 200, [
+                'Access-Control-Allow-Origin' => '*',
+            ]);
+        }
         if($request->header('APP-KEY')) {
             if($request->header('APP-KEY') == env("APP_KEY")) {
                 $response = $next($request);
@@ -12,11 +17,6 @@ class CorsMiddleware {
                 $response->header('Access-Control-Allow-Origin', '*');
                 return $response;
             }
-        }
-        if ($request->isMethod('OPTIONS')) {
-            return response()->json('{"method":"OPTIONS"}', 200, [
-                'Access-Control-Allow-Origin' => '*',
-            ]);
         }
 
         return response()->json([
