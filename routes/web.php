@@ -37,7 +37,7 @@ $router->delete('/user/{id}',                ['uses' => 'UserController@deleteUs
 // -----------------------------------------
 // SYSTEM and CONFIG
 // -----------------------------------------
-$router->get('/master',                  ['uses' => 'ConfigController@getMaster', 'middleware' => 'auth']);
+$router->get('/master',                  'ConfigController@getMaster');
 
 // -----------------------------------------
 // PERSONAL PROFILE
