@@ -22,8 +22,8 @@ class ProfilController extends Controller
 
     public function insertProfil(Request $request) {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            // 'id_user' => 'unique:profil',
+            'nama'      => 'required',
+            'id_user'   => 'unique:profil',
         ]);
         if ($validator->fails()){
             return $this->responseError("Invalid Request", $validator->errors());
@@ -68,7 +68,11 @@ class ProfilController extends Controller
 
     public function deleteProfil(Request $request) {
         $profil = Profil::find($request->id);
-        $profil->delete();
-        return $this->responseOK("Hapus profil sukses", null);
+        if ($profil) {
+            $profil->delete();
+            return $this->responseOK("Hapus profil sukses", null);
+        } else {
+            return $this->responseError("Profil tidak ada");
+        }
     }
 }
