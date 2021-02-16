@@ -47,3 +47,12 @@ $router->get('/profil/{id}',              ['uses' => 'ProfilController@detailPro
 $router->post('/profil',                  ['uses' => 'ProfilController@insertProfil', 'middleware' => 'auth']);
 $router->put('/profil',                   ['uses' => 'ProfilController@updateProfil', 'middleware' => 'auth']);
 $router->delete('/profil/{id}',                ['uses' => 'ProfilController@deleteProfil', 'middleware' => 'auth']);
+
+// -----------------------------------------
+// MANAGEMENT PUPUK
+// -----------------------------------------
+$router->get('/jadwal-pupuk',                  ['uses' => 'JadwalPupukController@getJadwalPupuk', 'middleware' => 'auth']);
+$router->get('/jadwal-pupuk/{id}',              ['uses' => 'JadwalPupukController@detailJadwalPupuk', 'middleware' => 'auth']);
+$router->post('/jadwal-pupuk',                  ['uses' => 'JadwalPupukController@insertJadwalPupuk', 'middleware' => 'auth']);
+$router->put('/jadwal-pupuk',                   ['uses' => 'JadwalPupukController@updateJadwalPupuk', 'middleware' => 'auth']);
+$router->delete('/jadwal-pupuk/{id}',                ['uses' => 'JadwalPupukController@deleteJadwalPupuk', 'middleware' => 'auth']);
