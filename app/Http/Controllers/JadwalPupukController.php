@@ -34,7 +34,12 @@ class JadwalPupukController extends Controller
 
     public function updateJadwalPupuk(Request $request) {
         $jadwalPupuk = JadwalPupuk::find($request->id);
-        //TODO:
+        $jadwalPupuk->jenis_pupuk = $request->jenis_pupuk;
+        $jadwalPupuk->kapasitas = $request->kapasitas;
+        $jadwalPupuk->satuan = $request->satuan;
+        $jadwalPupuk->id_poktan = $request->id_poktan;
+        $jadwalPupuk->tgl_distribusi = $request->tgl_distribusi;
+        $jadwalPupuk->id_instansi = $request->id_instansi;
         $jadwalPupuk->save();
         return $this->responseOK("Update jadwal pupuk sukses", $jadwalPupuk);
     }

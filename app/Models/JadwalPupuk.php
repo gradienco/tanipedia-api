@@ -12,4 +12,8 @@ class JadwalPupuk extends Model
     protected $table = 'jadwal_pupuk';
     protected $primaryKey = 'id';
 
+    protected $fillable = [
+        'jenis_pupuk', 'kapasitas', 'satuan', 'id_poktan', 'tgl_distribusi', 'id_instansi'
+    ];
+
 }

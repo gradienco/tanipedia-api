@@ -7,7 +7,7 @@ class CorsMiddleware {
         if ($request->isMethod('OPTIONS')) {
             return response()->json('{"method":"OPTIONS"}', 200, [
                 'Access-Control-Allow-Origin' => '*',
-                'Access-Control-Allow-Headers' => 'Content-Type, Authorization, X-Requested-With'
+                'Access-Control-Allow-Headers' => 'Content-Type, Authorization, X-Requested-With, APP-KEY'
             ]);
         }
         if($request->header('APP-KEY')) {
