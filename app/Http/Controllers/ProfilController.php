@@ -34,6 +34,7 @@ class ProfilController extends Controller
 
     public function updateProfil(Request $request) {
         $profil = Profil::find($request->id);
+
         $profil->nama = $request->nama;
         $profil->nik = $request->nik;
         $profil->kk = $request->kk;
@@ -54,14 +55,20 @@ class ProfilController extends Controller
         $profil->kodepos = $request->kodepos;
         $profil->latitude = $request->latitude;
         $profil->longtitude = $request->longtitude;
-        $profil->foto_profil = $request->foto_profil;
-        $profil->foto_ktp = $request->foto_ktp;
-        $profil->foto_kk = $request->foto_kk;
         $profil->gol_darah = $request->gol_darah;
         $profil->telp = $request->telp;
         $profil->email = $request->email;
         $profil->facebook = $request->facebook;
         $profil->id_user = $request->id_user;
+
+        //Upload Image
+        if($request->foto_profil != null) 
+            $profil->foto_profil = $this->convertImage($request->foto_profil, "profil", $profil->foto_profil);
+        if($request->foto_ktp != null) 
+            $profil->foto_ktp = $this->convertImage($request->foto_ktp, "profil", $profil->foto_profil);
+        if($request->foto_kk != null) 
+            $profil->foto_kk = $this->convertImage($request->foto_kk, "profil", $profil->foto_profil);
+
         $profil->save();
         return $this->responseOK("Update profil sukses", $profil);
     }
@@ -74,5 +81,17 @@ class ProfilController extends Controller
         } else {
             return $this->responseError("Profil tidak ada");
         }
+    }
+
+    public function updateImage (Request $request) {
+        $profil = Profil::find($request->id);
+        if($request->foto_profil != null) 
+            $profil->foto_profil = $this->convertImage($request->foto_profil, "profil", $profil->foto_profil);
+        if($request->foto_ktp != null) 
+            $profil->foto_ktp = $this->convertImage($request->foto_ktp, "profil", $profil->foto_ktp);
+        if($request->foto_kk != null) 
+            $profil->foto_kk = $this->convertImage($request->foto_kk, "profil", $profil->foto_kk);
+        $profil->save();
+        return $this->responseOK("Update foto sukses", $profil);
     }
 }

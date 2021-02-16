@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
+use Auth;
+use Illuminate\Support\Facades\File;
 
 class Controller extends BaseController
 {
@@ -51,5 +53,24 @@ class Controller extends BaseController
         curl_close($ch);
 
         return $result;
+    }
+
+    public function convertImage($baseImage, $head = "image", $previous = null) {
+        $baseImage = str_replace('data:image/png;base64,', '', $baseImage);
+        $baseImage = str_replace(' ', '+', $baseImage);
+        $imageName = $head.'-'.Auth::user()->id.'-'.time().'.'.'png';
+        if(!File::exists(base_path() . '/public/upload/')) {
+            File::makeDirectory(base_path() . '/public/upload/');
+        }
+        if(!File::exists(base_path() . '/public/upload/image/')) {
+            File::makeDirectory(base_path() . '/public/upload/image/');
+        }
+        File::put(base_path() . '/public/upload/image/' . $imageName, base64_decode($baseImage));
+        $imageName = '/public/upload/image/' . $imageName;
+
+        //Delete previous photo
+        if ($previous != null)
+            File::delete(base_path() . $previous);
+        return $imageName;
     }
 }

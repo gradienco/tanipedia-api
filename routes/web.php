@@ -46,7 +46,8 @@ $router->get('/profil',                  ['uses' => 'ProfilController@getProfil'
 $router->get('/profil/{id}',              ['uses' => 'ProfilController@detailProfil', 'middleware' => 'auth']);
 $router->post('/profil',                  ['uses' => 'ProfilController@insertProfil', 'middleware' => 'auth']);
 $router->put('/profil',                   ['uses' => 'ProfilController@updateProfil', 'middleware' => 'auth']);
-$router->delete('/profil/{id}',                ['uses' => 'ProfilController@deleteProfil', 'middleware' => 'auth']);
+$router->put('/profil/image',             ['uses' => 'ProfilController@updateImage', 'middleware' => 'auth']);
+$router->delete('/profil/{id}',           ['uses' => 'ProfilController@deleteProfil', 'middleware' => 'auth']);
 
 // -----------------------------------------
 // MANAGEMENT PUPUK
