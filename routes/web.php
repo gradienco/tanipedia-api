@@ -67,3 +67,12 @@ $router->get('/lahan/{id}',              ['uses' => 'LahanController@detailLahan
 $router->post('/lahan',                  ['uses' => 'LahanController@insertLahan', 'middleware' => 'auth']);
 $router->put('/lahan',                   ['uses' => 'LahanController@updateLahan', 'middleware' => 'auth']);
 $router->delete('/lahan/{id}',           ['uses' => 'LahanController@deleteLahan', 'middleware' => 'auth']);
+
+// -----------------------------------------
+// HASIL PANEN
+// -----------------------------------------
+$router->get('/panen',                  ['uses' => 'PanenController@getPanen', 'middleware' => 'auth']);
+$router->get('/panen/{id}',              ['uses' => 'PanenController@detailPanen', 'middleware' => 'auth']);
+$router->post('/panen',                  ['uses' => 'PanenController@insertPanen', 'middleware' => 'auth']);
+$router->put('/panen',                   ['uses' => 'PanenController@updatePanen', 'middleware' => 'auth']);
+$router->delete('/panen/{id}',           ['uses' => 'PanenController@deletePanen', 'middleware' => 'auth']);
