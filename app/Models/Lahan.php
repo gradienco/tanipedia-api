@@ -14,7 +14,7 @@ class Lahan extends Model
 
     protected $fillable = [
         'kategori', 'luas', 'satuan', 'alamat', 'usia_tanam', 'id_petani', 'id_instansi', 'keterangan',
-        'id_desa', 'id_kecamatan', 'id_kabupaten', 'id_provinsi', 'kodepos', 'latitude', 'longtitude'
+        'id_desa', 'id_kecamatan', 'id_kabupaten', 'id_provinsi', 'latitude', 'longtitude'
     ];
 
 }

@@ -45,7 +45,6 @@ class LahanController extends Controller
         $lahan->id_kecamatan = $request->id_kecamatan;
         $lahan->id_kabupaten = $request->id_kabupaten;
         $lahan->id_provinsi = $request->id_provinsi;
-        $lahan->kodepos = $request->kodepos;
         $lahan->latitude = $request->latitude;
         $lahan->longtitude = $request->longtitude;
         $lahan->keterangan = $request->keterangan;

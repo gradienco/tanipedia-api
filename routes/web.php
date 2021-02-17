@@ -38,6 +38,7 @@ $router->delete('/user/{id}',                ['uses' => 'UserController@deleteUs
 // SYSTEM and CONFIG
 // -----------------------------------------
 $router->get('/master',                  'ConfigController@getMaster');
+$router->post('/attachment',              ['uses' => 'ConfigController@insertAttachment', 'middleware' => 'auth']);
 
 // -----------------------------------------
 // PERSONAL PROFILE
