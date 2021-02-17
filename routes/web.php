@@ -57,3 +57,12 @@ $router->get('/jadwal-pupuk/{id}',              ['uses' => 'JadwalPupukControlle
 $router->post('/jadwal-pupuk',                  ['uses' => 'JadwalPupukController@insertJadwalPupuk', 'middleware' => 'auth']);
 $router->put('/jadwal-pupuk',                   ['uses' => 'JadwalPupukController@updateJadwalPupuk', 'middleware' => 'auth']);
 $router->delete('/jadwal-pupuk/{id}',                ['uses' => 'JadwalPupukController@deleteJadwalPupuk', 'middleware' => 'auth']);
+
+// -----------------------------------------
+// LAHAN PERTANIAN
+// -----------------------------------------
+$router->get('/lahan',                  ['uses' => 'LahanController@getLahan', 'middleware' => 'auth']);
+$router->get('/lahan/{id}',              ['uses' => 'LahanController@detailLahan', 'middleware' => 'auth']);
+$router->post('/lahan',                  ['uses' => 'LahanController@insertLahan', 'middleware' => 'auth']);
+$router->put('/lahan',                   ['uses' => 'LahanController@updateLahan', 'middleware' => 'auth']);
+$router->delete('/lahan/{id}',           ['uses' => 'LahanController@deleteLahan', 'middleware' => 'auth']);

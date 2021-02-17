@@ -40,6 +40,7 @@ class JadwalPupukController extends Controller
         $jadwalPupuk->id_poktan = $request->id_poktan;
         $jadwalPupuk->tgl_distribusi = $request->tgl_distribusi;
         $jadwalPupuk->id_instansi = $request->id_instansi;
+        $jadwalPupuk->keterangan = $request->keterangan;
         $jadwalPupuk->save();
         return $this->responseOK("Update jadwal pupuk sukses", $jadwalPupuk);
     }

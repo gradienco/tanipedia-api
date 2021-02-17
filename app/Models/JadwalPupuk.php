@@ -13,7 +13,7 @@ class JadwalPupuk extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'jenis_pupuk', 'kapasitas', 'satuan', 'id_poktan', 'tgl_distribusi', 'id_instansi'
+        'jenis_pupuk', 'kapasitas', 'satuan', 'id_poktan', 'tgl_distribusi', 'id_instansi', 'keterangan'
     ];
 
 }

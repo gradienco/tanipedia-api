@@ -63,11 +63,11 @@ class ProfilController extends Controller
 
         //Upload Image
         if($request->foto_profil != null) 
-            $profil->foto_profil = $this->convertImage($request->foto_profil, "profil", $profil->foto_profil);
+            $profil->foto_profil = $this->uploadImage($request->foto_profil, "profil", $profil->foto_profil);
         if($request->foto_ktp != null) 
-            $profil->foto_ktp = $this->convertImage($request->foto_ktp, "profil", $profil->foto_profil);
+            $profil->foto_ktp = $this->uploadImage($request->foto_ktp, "profil", $profil->foto_profil);
         if($request->foto_kk != null) 
-            $profil->foto_kk = $this->convertImage($request->foto_kk, "profil", $profil->foto_profil);
+            $profil->foto_kk = $this->uploadImage($request->foto_kk, "profil", $profil->foto_profil);
 
         $profil->save();
         return $this->responseOK("Update profil sukses", $profil);
@@ -86,11 +86,11 @@ class ProfilController extends Controller
     public function updateImage (Request $request) {
         $profil = Profil::find($request->id);
         if($request->foto_profil != null) 
-            $profil->foto_profil = $this->convertImage($request->foto_profil, "profil", $profil->foto_profil);
+            $profil->foto_profil = $this->uploadImage($request->foto_profil, "profil", $profil->foto_profil);
         if($request->foto_ktp != null) 
-            $profil->foto_ktp = $this->convertImage($request->foto_ktp, "profil", $profil->foto_ktp);
+            $profil->foto_ktp = $this->uploadImage($request->foto_ktp, "profil", $profil->foto_ktp);
         if($request->foto_kk != null) 
-            $profil->foto_kk = $this->convertImage($request->foto_kk, "profil", $profil->foto_kk);
+            $profil->foto_kk = $this->uploadImage($request->foto_kk, "profil", $profil->foto_kk);
         $profil->save();
         return $this->responseOK("Update foto sukses", $profil);
     }

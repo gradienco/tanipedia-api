@@ -55,7 +55,7 @@ class Controller extends BaseController
         return $result;
     }
 
-    public function convertImage($baseImage, $head = "image", $previous = null) {
+    public function uploadImage($baseImage, $head = "image", $previous = null) {
         $baseImage = str_replace('data:image/png;base64,', '', $baseImage);
         $baseImage = str_replace(' ', '+', $baseImage);
         $imageName = $head.'-'.Auth::user()->id.'-'.time().'.'.'png';
