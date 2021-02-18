@@ -11,10 +11,7 @@ use App\Models\Panen;
 class PanenController extends Controller
 {
     public function getPanen(Request $request) {
-        $panen = Panen::all();
-        $panen = $panen->map(function($val){
-            return Panen::mapData($val);
-        });
+        $panen = Panen::cget($request);
         return $this->responseOK("List panen pertanian", $panen);
     }
 

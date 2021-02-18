@@ -11,10 +11,7 @@ use App\Models\Profil;
 class ProfilController extends Controller
 {
     public function getProfil(Request $request) {
-        $profil = Profil::all();
-        $profil = $profil->map(function($val){
-            return Profil::mapData($val);
-        });
+        $profil = Profil::cget($request);
         return $this->responseOK("List profil pengguna", $profil);
     }
 

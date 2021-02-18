@@ -11,10 +11,7 @@ use App\Models\Lahan;
 class LahanController extends Controller
 {
     public function getLahan(Request $request) {
-        $lahan = Lahan::all();
-        $lahan = $lahan->map(function($val){
-            return Lahan::mapData($val);
-        });
+        $lahan = Lahan::cget($request);
         return $this->responseOK("List lahan pertanian", $lahan);
     }
 

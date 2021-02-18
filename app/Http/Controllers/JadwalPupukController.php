@@ -12,10 +12,7 @@ use App\Models\JadwalPupuk;
 class JadwalPupukController extends Controller
 {
     public function getJadwalPupuk(Request $request) {
-        $jadwalPupuk = JadwalPupuk::all();
-        $jadwalPupuk = $jadwalPupuk->map(function($val){
-            return JadwalPupuk::mapData($val);
-        });
+        $jadwalPupuk = JadwalPupuk::cget($request);
         return $this->responseOK("List jadwal pupuk", $jadwalPupuk);
     }
 
