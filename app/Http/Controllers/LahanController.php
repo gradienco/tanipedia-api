@@ -12,11 +12,15 @@ class LahanController extends Controller
 {
     public function getLahan(Request $request) {
         $lahan = Lahan::all();
+        $lahan = $lahan->map(function($val){
+            return Lahan::mapData($val);
+        });
         return $this->responseOK("List lahan pertanian", $lahan);
     }
 
     public function detailLahan(Request $request) {
         $lahan = Lahan::find($request->id);
+        $lahan = Lahan::mapData($lahan);
         return $this->responseOK("Lahan pertanian", $lahan);
     }
 
@@ -28,6 +32,7 @@ class LahanController extends Controller
             return $this->responseError("Invalid Request", $validator->errors());
         }
         $lahan = Lahan::create($request->all());
+        $lahan = Lahan::mapData($lahan);
         return $this->responseOK("Tambah lahan sukses", $lahan);
     }
 
@@ -50,6 +55,7 @@ class LahanController extends Controller
         $lahan->keterangan = $request->keterangan;
         
         $lahan->save();
+        $lahan = Lahan::mapData($lahan);
         return $this->responseOK("Update lahan sukses", $lahan);
     }
 

@@ -13,11 +13,15 @@ class JadwalPupukController extends Controller
 {
     public function getJadwalPupuk(Request $request) {
         $jadwalPupuk = JadwalPupuk::all();
+        $jadwalPupuk = $jadwalPupuk->map(function($val){
+            return JadwalPupuk::mapData($val);
+        });
         return $this->responseOK("List jadwal pupuk", $jadwalPupuk);
     }
 
     public function detailJadwalPupuk(Request $request) {
         $jadwalPupuk = JadwalPupuk::find($request->id);
+        $jadwalPupuk = JadwalPupuk::mapData($jadwalPupuk);
         return $this->responseOK("Detail jadwal pupuk", $jadwalPupuk);
     }
 
@@ -29,6 +33,7 @@ class JadwalPupukController extends Controller
             return $this->responseError("Invalid Request", $validator->errors());
         }
         $jadwalPupuk = JadwalPupuk::create($request->all());
+        $jadwalPupuk = JadwalPupuk::mapData($jadwalPupuk);
         return $this->responseOK("Tambah jadwal pupuk sukses", $jadwalPupuk);
     }
 
@@ -42,6 +47,7 @@ class JadwalPupukController extends Controller
         $jadwalPupuk->id_instansi = $request->id_instansi;
         $jadwalPupuk->keterangan = $request->keterangan;
         $jadwalPupuk->save();
+        $jadwalPupuk = JadwalPupuk::mapData($jadwalPupuk);
         return $this->responseOK("Update jadwal pupuk sukses", $jadwalPupuk);
     }
 

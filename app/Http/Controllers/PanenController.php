@@ -12,11 +12,15 @@ class PanenController extends Controller
 {
     public function getPanen(Request $request) {
         $panen = Panen::all();
+        $panen = $panen->map(function($val){
+            return Panen::mapData($val);
+        });
         return $this->responseOK("List panen pertanian", $panen);
     }
 
     public function detailpanen(Request $request) {
         $panen = Panen::find($request->id);
+        $panen = Panen::mapData($panen);
         return $this->responseOK("Panen pertanian", $panen);
     }
 
@@ -28,6 +32,7 @@ class PanenController extends Controller
             return $this->responseError("Invalid Request", $validator->errors());
         }
         $panen = Panen::create($request->all());
+        $panen = Panen::mapData($panen);
         return $this->responseOK("Tambah panen sukses", $panen);
     }
 
@@ -46,6 +51,7 @@ class PanenController extends Controller
         $panen->keterangan = $request->keterangan;
         
         $panen->save();
+        $panen = Panen::mapData($panen);
         return $this->responseOK("Update panen sukses", $panen);
     }
 

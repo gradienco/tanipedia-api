@@ -17,4 +17,40 @@ class Lahan extends Model
         'id_desa', 'id_kecamatan', 'id_kabupaten', 'id_provinsi', 'latitude', 'longtitude'
     ];
 
+    public static function mapData($data) {
+        return [
+            "id" => $data->id,
+            "kategori" => $data->masterKategori->nama,
+            "luas" => $data->luas,
+            "satuan" => $data->masterSatuan->nama,
+            "alamat" => $data->alamat,
+            "usia_tanam" => $data->usia_tanam,
+            "id_petani" => $data->id_petani,
+            "petani" => $data->profilPetani->nama,
+            "desa" => $data->id_desa,
+            "kecamatan" => $data->id_kecamatan,
+            "kabupaten" => $data->id_kabupaten,
+            "provinsi" => $data->id_provinsi,
+            "kodepos" => $data->kodepos,
+            "latitude" => $data->latitude,
+            "longtitude" => $data->longtitude,
+            "keterangan" => $data->keterangan,
+        ];
+    }
+
+    public function masterKategori() {
+        return $this->belongsTo('App\Models\Master', 'kategori')->withDefault();
+    }
+
+    public function masterSatuan() {
+        return $this->belongsTo('App\Models\Master', 'satuan')->withDefault();
+    }
+
+    public function profilPetani() {
+        return $this->belongsTo('App\Models\Profil', 'id_petani')->withDefault();
+    }
+
+    public function profilInstansi() {
+        return $this->belongsTo('App\Models\Instansi', 'id_instansi')->withDefault();
+    }
 }
