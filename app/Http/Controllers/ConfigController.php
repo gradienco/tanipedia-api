@@ -13,10 +13,7 @@ use App\Models\Wilayah;
 class ConfigController extends Controller
 {
     public function getMaster(Request $request) {
-        $master = Master::all();
-        $master = $master->map(function($val){
-            return Master::mapData($val);
-        });
+        $master = Master::cget($request);
         return $this->responseOK("List data master", $master);
     }
 
@@ -37,22 +34,7 @@ class ConfigController extends Controller
     }
 
     public function getWilayah(Request $request) {
-        switch ($request->domain) {
-            case 'provinsi':
-                $wilayah = Wilayah::all();
-                break;
-            case 'kabupaten':
-                $wilayah = Wilayah::all();
-                break;
-            case 'kecamatan':
-                $wilayah = Wilayah::all();
-                break;
-            case 'desa':
-                $wilayah = Wilayah::all();
-                break;
-            default:
-                return $this->responseError("Request Error");
-        }
-        return $this->responseOK("Sukses");
+        $wilayah = Wilayah::cget($request);
+        return $this->responseOK("Sukses", $wilayah);
     }
 }
