@@ -14,6 +14,9 @@ class ConfigController extends Controller
 {
     public function getMaster(Request $request) {
         $master = Master::all();
+        $master = $master->map(function($val){
+            return Master::mapData($val);
+        });
         return $this->responseOK("List data master", $master);
     }
 

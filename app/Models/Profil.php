@@ -18,6 +18,40 @@ class Profil extends Model
         'gol_darah', 'telp', 'email', 'facebook', 'id_user'
     ];
 
+    public static function mapData($data) {
+        return [
+            "id" => $data->id,
+            "nama" => $data->nama,
+            "nik" => $data->nik,
+            "kk" => $data->kk,
+            "kategori" => $data->kategori,
+            "pekerjaan" => $data->masterPekerjaan->nama,
+            "gender" => $data->masterGender->nama,
+            "agama" => $data->maseterAgama->nama,
+            "suku" => $data->masterSuku->nama,
+            "tgl_lahir" => $data->tgl_lahir,
+            "pendidikan" => $data->masterPendidikan->nama,
+            "alamat" => $data->alamat,
+            "rt" => $data->rt,
+            "rw" => $data->rw,
+            "desa" => $data->id_desa,
+            "kecamatan" => $data->id_kecamatan,
+            "kabupaten" => $data->id_kabupaten,
+            "provinsi" => $data->id_provinsi,
+            "kodepos" => $data->kodepos,
+            "latitude" => $data->latitude,
+            "longtitude" => $data->longtitude,
+            "foto_profil" => $data->foto_profil,
+            "foto_ktp" => $data->foto_ktp,
+            "foto_kk" => $data->foto_kk,
+            "gol_darah" => $data->gol_darah,
+            "telp" => $data->telp,
+            "email" => $data->email,
+            "facebook" => $data->facebook,
+            "id_user" => $data->id_user,
+        ];
+    }
+
     public function masterGender() {
         return $this->belongsTo('App\Models\Master', 'gender')->withDefault();
     }

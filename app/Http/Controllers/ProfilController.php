@@ -12,11 +12,15 @@ class ProfilController extends Controller
 {
     public function getProfil(Request $request) {
         $profil = Profil::all();
+        $profil = $profil->map(function($val){
+            return Profil::mapData($val);
+        });
         return $this->responseOK("List profil pengguna", $profil);
     }
 
     public function detailProfil(Request $request) {
         $profil = Profil::find($request->id);
+        $profil = Profil::mapData($profil);
         return $this->responseOK("Profil pengguna", $profil);
     }
 
@@ -29,6 +33,7 @@ class ProfilController extends Controller
             return $this->responseError("Invalid Request", $validator->errors());
         }
         $profil = Profil::create($request->all());
+        $profil = Profil::mapData($profil);
         return $this->responseOK("Tambah profil sukses", $profil);
     }
 
@@ -70,6 +75,7 @@ class ProfilController extends Controller
             $profil->foto_kk = $this->uploadImage($request->foto_kk, "profil", $profil->foto_profil);
 
         $profil->save();
+        $profil = Profil::mapData($profil);
         return $this->responseOK("Update profil sukses", $profil);
     }
 
@@ -92,6 +98,7 @@ class ProfilController extends Controller
         if($request->foto_kk != null) 
             $profil->foto_kk = $this->uploadImage($request->foto_kk, "profil", $profil->foto_kk);
         $profil->save();
+        $profil = Profil::mapData($profil);
         return $this->responseOK("Update foto sukses", $profil);
     }
 }
