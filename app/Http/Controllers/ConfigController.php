@@ -8,6 +8,7 @@ use Auth;
 
 use App\Models\Master;
 use App\Models\Attachment;
+use App\Models\Wilayah;
 
 class ConfigController extends Controller
 {
@@ -30,5 +31,25 @@ class ConfigController extends Controller
         //TODO
         //Unlink relation
         return $this->responseOK("Delete attachment success");
+    }
+
+    public function getWilayah(Request $request) {
+        switch ($request->domain) {
+            case 'provinsi':
+                $wilayah = Wilayah::all();
+                break;
+            case 'kabupaten':
+                $wilayah = Wilayah::all();
+                break;
+            case 'kecamatan':
+                $wilayah = Wilayah::all();
+                break;
+            case 'desa':
+                $wilayah = Wilayah::all();
+                break;
+            default:
+                return $this->responseError("Request Error");
+        }
+        return $this->responseOK("Sukses");
     }
 }
