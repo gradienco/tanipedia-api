@@ -12,19 +12,19 @@ class Wilayah extends Model
     public function scopeCget($query, $request) {
         switch ($request->domain) {
             case 'provinsi':
-                $query = $query->where();
+                $query = $query->where('kabupatenkota', 0);
                 break;
-            case 'kabupaten':
-                $query = $query->where();
+            case 'kabupatenkota':
+                $query = $query->where('kabupatenkota', '!=', 0)->where('kecamatan', 0);
                 break;
             case 'kecamatan':
-                $query = $query->where();
+                $query = $query->where('kabupatenkota', '!=', 0)->where('kecamatan', '!=', 0)->where('kelurahan', 0);
                 break;
-            case 'desa':
-                $query = $query->where();
+            case 'kelurahan':
+                $query = $query->where('kabupatenkota', '!=', 0)->where('kecamatan', '!=', 0)->where('kelurahan', '!=', 0);
                 break;
             default:
-                return "Request Error";
+                return "Destination Error";
         }
         if ($request->filter != null) {
             foreach ($request->filter as $key => $val) {
