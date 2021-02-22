@@ -57,6 +57,7 @@ class Profil extends Model
             "kodepos" => $data->kodepos,
             "latitude" => $data->latitude,
             "longtitude" => $data->longtitude,
+            "coordinate" => [ $data->latitude, $data->longtitude],
             "foto_profil" => $data->foto_profil,
             "foto_ktp" => $data->foto_ktp,
             "foto_kk" => $data->foto_kk,

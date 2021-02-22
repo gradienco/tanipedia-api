@@ -50,6 +50,7 @@ class Lahan extends Model
             "kodepos" => $data->kodepos,
             "latitude" => $data->latitude,
             "longtitude" => $data->longtitude,
+            "coordinate" => [ $data->latitude, $data->longtitude],
             "keterangan" => $data->keterangan,
         ];
     }
