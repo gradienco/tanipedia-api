@@ -43,10 +43,10 @@ class Lahan extends Model
             "usia_tanam" => $data->usia_tanam,
             "id_petani" => $data->id_petani,
             "petani" => $data->profilPetani->nama,
-            "desa" => $data->id_desa,
-            "kecamatan" => $data->id_kecamatan,
-            "kabupaten" => $data->id_kabupaten,
-            "provinsi" => $data->id_provinsi,
+            "desa" => $data->masterDesa->nama,
+            "kecamatan" => $data->masterKecamatan->nama,
+            "kabupaten" => $data->masterKabupaten->nama,
+            "provinsi" => $data->masterProvinsi->nama,
             "kodepos" => $data->kodepos,
             "latitude" => $data->latitude,
             "longtitude" => $data->longtitude,
@@ -69,5 +69,18 @@ class Lahan extends Model
 
     public function profilInstansi() {
         return $this->belongsTo('App\Models\Instansi', 'id_instansi')->withDefault();
+    }
+
+    public function masterDesa() {
+        return $this->belongsTo('App\Models\Wilayah', 'id_desa')->withDefault();
+    }
+    public function masterKecamatan() {
+        return $this->belongsTo('App\Models\Wilayah', 'id_kecamatan')->withDefault();
+    }
+    public function masterKabupaten() {
+        return $this->belongsTo('App\Models\Wilayah', 'id_kabupaten')->withDefault();
+    }
+    public function masterProvinsi() {
+        return $this->belongsTo('App\Models\Wilayah', 'id_provinsi')->withDefault();
     }
 }
