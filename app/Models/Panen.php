@@ -36,20 +36,17 @@ class Panen extends Model
         return [
             "id" => $data->id,
             "kategori" => $data->masterKategori->nama,
-            "luas" => $data->luas,
+            "varietas" => $data->varietas,
+            "total_panen" => $data->total_panen,
             "satuan" => $data->masterSatuan->nama,
-            "alamat" => $data->alamat,
             "usia_tanam" => $data->usia_tanam,
             "id_petani" => $data->id_petani,
             "petani" => $data->profilPetani->nama,
-            "desa" => $data->masterDesa->nama,
-            "kecamatan" => $data->masterKecamatan->nama,
-            "kabupaten" => $data->masterKabupaten->nama,
-            "provinsi" => $data->masterProvinsi->nama,
-            "kodepos" => $data->kodepos,
-            "latitude" => $data->latitude,
-            "longtitude" => $data->longtitude,
-            "coordinate" => [ $data->latitude, $data->longtitude],
+            "id_instansi" => $data->id_instansi,
+            // "instansi" => $data->profilInstansi->nama,
+            "id_lahan" => $data->id_lahan,
+            "tgl_tanam" => $data->tgl_tanam,
+            "tgl_panen" => $data->tgl_panen,
             "keterangan" => $data->keterangan,
         ];
     }
@@ -65,7 +62,6 @@ class Panen extends Model
     public function profilPetani() {
         return $this->belongsTo('App\Models\Profil', 'id_petani')->withDefault();
     }
-
     public function profilInstansi() {
         return $this->belongsTo('App\Models\Instansi', 'id_instansi')->withDefault();
     }
