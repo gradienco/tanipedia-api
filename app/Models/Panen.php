@@ -16,7 +16,7 @@ class Panen extends Model
         'id_petani', 'id_instansi', 'kategori', 'varietas', 'total_panen', 'satuan', 'tgl_tanam', 'tgl_panen', 'id_lahan', 'keterangan'
     ];
 
-    public function scopeCget($query, $request) {
+    public function scopeCget($query, Request $request) {
         $sort = "ASC";
         foreach ($request->all() as $key => $val) {
             if ($key == "limit_page")

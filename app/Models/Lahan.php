@@ -17,7 +17,7 @@ class Lahan extends Model
         'id_desa', 'id_kecamatan', 'id_kabupaten', 'id_provinsi', 'latitude', 'longtitude'
     ];
 
-    public function scopeCget($query, $request) {
+    public function scopeCget($query, Request $request) {
         $sort = "ASC";
         foreach ($request->all() as $key => $val) {
             if ($key == "limit_page")

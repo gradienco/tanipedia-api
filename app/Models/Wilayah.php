@@ -9,7 +9,7 @@ class Wilayah extends Model
     protected $table = 'wilayah';
     protected $primaryKey = 'id';
 
-    public function scopeCget($query, $request) {
+    public function scopeCget($query, Request $request) {
         switch ($request->domain) {
             case 'provinsi':
                 $query = $query->where('kabupatenkota', 0);

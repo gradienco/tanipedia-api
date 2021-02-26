@@ -16,7 +16,7 @@ class JadwalPupuk extends Model
         'jenis_pupuk', 'kapasitas', 'satuan', 'id_poktan', 'tgl_distribusi', 'id_instansi', 'keterangan'
     ];
 
-    public function scopeCget($query, $request) {
+    public function scopeCget($query, Request $request) {
         $sort = "ASC";
         foreach ($request->all() as $key => $val) {
             if ($key == "limit_page")

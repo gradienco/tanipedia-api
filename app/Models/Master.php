@@ -12,7 +12,7 @@ class Master extends Model
     protected $table = 'set_master';
     protected $primaryKey = 'id';
 
-    public function scopeCget($query, $request) {
+    public function scopeCget($query, Request $request) {
         $sort = "ASC";
         foreach ($request->all() as $key => $val) {
             if ($key == "limit_page")
