@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Wilayah extends Model
 {
@@ -26,15 +27,23 @@ class Wilayah extends Model
             default:
                 return "Destination Error";
         }
-        if ($request->filter != null) {
-            foreach ($request->filter as $key => $val) {
+
+        $sort = "ASC";
+        foreach ($request->all() as $key => $val) {
+            if ($key == "limit_page")
+                $query = $query->limit($request->limit_page);
+            else if ($key == "page") 
+                $query = $query->offset(($request->limit_page *($request->page - 1)));
+            else if ($key == "order_by")
+                $orderBy = $val;
+            else if ($key == "sort")
+                $sort = $val;
+            else  
                 $query = $query->where($key, $val);
-            }
-        }
-        if ($request->order != null) {
-            $query = $query->offset(($request->order['limit_page'] *($request->order['page'] - 1)))->limit($request->order['limit_page'])
-                    ->orderBy($request->order['order_by'], $request->order['sort']);
-        }
+        }   
+        if ($request->order_by != null)
+            $query = $query->orderBy($orderBy, $sort);
+            
         $query = $query->get();
         return $query;
     }
