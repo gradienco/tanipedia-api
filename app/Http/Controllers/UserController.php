@@ -71,4 +71,22 @@ class UserController extends Controller
         $user = Auth::user();
         return $this->responseOK("User logged in", $user, 200);
     }
+
+    public function updateUser(Request $request) {
+        // $user = User::all();
+        // return $this->responseOK("List profil pengguna", $user);
+        $user = User::find($request->id);
+
+        if ($request->username != null)
+            $user->username = $request->username;
+        if ($request->password != null)
+            $user->password = Hash::make($request->password);
+        if ($request->email != null)
+            $user->email = $request->email;
+        if ($request->telp != null)
+            $user->telp = $request->telp;
+
+        $user->save();
+        return $this->responseOK("Update user sukses", $user);
+    }
 }

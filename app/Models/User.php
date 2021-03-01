@@ -32,4 +32,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    public function profil() {
+        return $this->belongsTo('App\Models\Profil', 'id_profil')->withDefault();
+    }
 }
