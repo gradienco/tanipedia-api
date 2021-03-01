@@ -85,6 +85,8 @@ class UserController extends Controller
             $user->email = $request->email;
         if ($request->telp != null)
             $user->telp = $request->telp;
+        if ($request->id_profil != null)
+            $user->id_profil = $request->id_profil;
 
         $user->save();
         return $this->responseOK("Update user sukses", $user);
