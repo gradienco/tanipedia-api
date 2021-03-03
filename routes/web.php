@@ -40,7 +40,7 @@ $router->delete('/user/{id}',                ['uses' => 'UserController@deleteUs
 $router->get('/master',                  'ConfigController@getMaster');
 $router->get('/wilayah/{domain}',        'ConfigController@getWilayah');
 $router->post('/attachment',              ['uses' => 'ConfigController@insertAttachment', 'middleware' => 'auth']);
-
+$router->get('/dashboard',              ['uses' => 'ConfigController@dashboard', 'middleware' => 'auth']);
 
 // -----------------------------------------
 // PERSONAL PROFILE

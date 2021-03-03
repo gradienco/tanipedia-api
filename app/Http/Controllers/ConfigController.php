@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Validator;
 use Auth;
 
@@ -36,5 +37,18 @@ class ConfigController extends Controller
     public function getWilayah(Request $request) {
         $wilayah = Wilayah::cget($request);
         return $this->responseOK("Sukses", $wilayah);
+    }
+
+    public function dashboard() {
+        $data = [
+            "total_petani" => DB::table('profil')->count(),
+            "total_lahan" => DB::table('lahan')->count(),
+            "total_varietas" => count(DB::table('lahan')->select('kategori')->whereNotNull('kategori')->distinct()->get()),
+            "total_pupuk" => DB::table('jadwal_pupuk')->count(),
+            "total_poktan" => DB::table('instansi')->count(),
+            "total_artikel" => DB::table('artikel')->count(),
+            "kalender_pupuk" => null
+        ];
+        return $this->responseOK("Sukses", $data);
     }
 }

@@ -56,6 +56,7 @@ class Panen extends Model
             "tgl_tanam" => $data->tgl_tanam,
             "tgl_panen" => $data->tgl_panen,
             "keterangan" => $data->keterangan,
+            "foto_panen" => $data->foto_panen
         ];
     }
 
