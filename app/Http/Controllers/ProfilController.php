@@ -79,6 +79,8 @@ class ProfilController extends Controller
     public function deleteProfil(Request $request) {
         $profil = Profil::find($request->id);
         if ($profil) {
+            foreach ($profil->hasUser as $user)
+                $user->delete();
             $profil->delete();
             return $this->responseOK("Hapus profil sukses", null);
         } else {

@@ -69,7 +69,7 @@ class Profil extends Model
             "foto_profil" => $data->foto_profil,
             "foto_ktp" => $data->foto_ktp,
             "foto_kk" => $data->foto_kk,
-            "gol_darah" => $data->gol_darah,
+            "gol_darah" => $data->masterGolDarah->nama,
             "telp" => $data->telp,
             "email" => $data->email,
             "facebook" => $data->facebook,
@@ -106,6 +106,9 @@ class Profil extends Model
     }
     public function masterProvinsi() {
         return $this->belongsTo('App\Models\Wilayah', 'id_provinsi')->withDefault();
+    }
+    public function hasUser() {
+        return $this->hasMany('App\Models\User', 'id_profil');
     }
 
 }
