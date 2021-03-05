@@ -30,6 +30,8 @@ class Profil extends Model
                 $orderBy = $val;
             else if ($key == "sort")
                 $sort = $val;
+            else if ($key == "nama")
+                $query = $query->where($key, 'ilike', '%'.$val.'%');
             else  
                 $query = $query->where($key, $val);
         }   
