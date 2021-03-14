@@ -66,7 +66,7 @@ class Controller extends BaseController
             File::makeDirectory(base_path() . '/public/upload/image/');
         }
         File::put(base_path() . '/public/upload/image/' . $imageName, base64_decode($baseImage));
-        $imageName = '/public/upload/image/' . $imageName;
+        $imageName = '/upload/image/' . $imageName;
 
         //Delete previous photo
         if ($previous != null)
