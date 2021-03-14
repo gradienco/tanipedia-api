@@ -53,6 +53,7 @@ class Panen extends Model
             "id_instansi" => $data->id_instansi,
             // "instansi" => $data->profilInstansi->nama,
             "id_lahan" => $data->id_lahan,
+            "lahan" => $data->profilLahan,
             "tgl_tanam" => $data->tgl_tanam,
             "tgl_panen" => $data->tgl_panen,
             "keterangan" => $data->keterangan,
@@ -86,5 +87,8 @@ class Panen extends Model
     }
     public function masterProvinsi() {
         return $this->belongsTo('App\Models\Wilayah', 'id_provinsi')->withDefault();
+    }
+    public function profilLahan() {
+        return $this->belongsTo('App\Models\Lahan', 'id_lahan')->withDefault();
     }
 }
