@@ -42,6 +42,7 @@ class JadwalPupukController extends Controller
         $jadwalPupuk->id_poktan = $request->id_poktan;
         $jadwalPupuk->tgl_distribusi = $request->tgl_distribusi;
         $jadwalPupuk->id_instansi = $request->id_instansi;
+        $jadwalPupuk->id_petani = $request->id_petani;
         $jadwalPupuk->keterangan = $request->keterangan;
         $jadwalPupuk->save();
         $jadwalPupuk = JadwalPupuk::mapData($jadwalPupuk);
