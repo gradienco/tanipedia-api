@@ -49,7 +49,7 @@ class JadwalPupuk extends Model
             "id_poktan" => $data->id_poktan,
             "poktan" => $data->poktan,
             "id_petani" => $data->id_petani,
-            "petani" => $data->petani,
+            "petani" => $data->profilPetani->nama,
             "tgl_distribusi" => $data->tgl_distribusi,
             "instansi" => $data->instansi,
             "keterangan" => $data->keterangan,
@@ -58,5 +58,8 @@ class JadwalPupuk extends Model
 
     public function masterSatuan() {
         return $this->belongsTo('App\Models\Master', 'satuan')->withDefault();
+    }
+    public function profilPetani() {
+        return $this->belongsTo('App\Models\Profil', 'id_petani')->withDefault();
     }
 }
