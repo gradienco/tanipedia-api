@@ -14,7 +14,7 @@ class JadwalPupuk extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'jenis_pupuk', 'kapasitas', 'satuan', 'id_poktan', 'tgl_distribusi', 'id_instansi', 'keterangan'
+        'jenis_pupuk', 'kapasitas', 'satuan', 'id_poktan', 'tgl_distribusi', 'id_petani', 'id_instansi', 'keterangan'
     ];
 
     public function scopeCget($query, Request $request) {
